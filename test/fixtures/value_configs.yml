@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  constraint: one
+  default_value: 1
+  max_value: 1
+  min_value: 1
+
+two:
+  constraint: two
+  default_value: 1
+  max_value: 1
+  min_value: 1

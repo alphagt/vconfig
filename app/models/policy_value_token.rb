@@ -1,0 +1,2 @@
+class PolicyValueToken < ApplicationRecord
+end
