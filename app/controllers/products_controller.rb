@@ -5,12 +5,12 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
 
-    render json: @products, :include => {:coverage_groups => {:include => [{:coverages => {:include => [:constraints]}}, :constraints], :except => [:created_at, :updated_at]}}
+    render json: @products, :include => {:coverage_groups => {:include => [{:coverages => {:include => [:constraints => {:except => [:created_at, :updated_at, :constrainable_type]}]}}, :constraints], :except => [:created_at, :updated_at]}}
   end
 
   # GET /products/1
   def show
-    render json: @product, :include => {:coverage_groups => {:include => [{:coverages => {:include => [:constraints]}}, :constraints], :except => [:created_at, :updated_at]}}
+    render json: @product, :include => {:coverage_groups => {:include => [{:coverages => {:include => [:constraints => {:except => [:created_at, :updated_at, :constrainable_type]}], :except => [:created_at, :updated_at]}}, :constraints => {:except => [:created_at, :updated_at, :constrainable_type]}], :except => [:created_at, :updated_at, :constrainable_type]}}
   end
 
   # POST /products

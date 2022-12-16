@@ -5,12 +5,12 @@ class ConstraintsController < ApplicationController
   def index
     @constraints = Constraint.all
 
-    render json: @constraints
+    render json: @constraints, :include => [:value_configs], :except => [:created_at, :updated_at, :constrainable_type]
   end
 
   # GET /constraints/1
   def show
-    render json: @constraint
+    render json: @constraint, :include => [:value_configs], :except => [:created_at, :updated_at]
   end
 
   # POST /constraints
@@ -46,6 +46,6 @@ class ConstraintsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def constraint_params
-      params.require(:constraint).permit(:coverage_group_id, :name, :subject, :value_token, :operator, :optional, :default, :units, :agreggate)
+      params.require(:constraint).permit(:coverage_group_id, :name, :subject, :value_token, :operator, :optional, :default, :units, :agreggate, value_config_ids: [])
     end
 end

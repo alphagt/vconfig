@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_12_040632) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_16_194507) do
   create_table "constraints", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.integer "subject"
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_040632) do
     t.datetime "updated_at", null: false
     t.bigint "constrainable_id"
     t.string "constrainable_type"
+    t.bigint "product_id"
     t.index ["constrainable_type", "constrainable_id"], name: "index_constraints_on_constrainable_type_and_constrainable_id"
   end
 
@@ -49,6 +50,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_040632) do
     t.string "carrier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "product_id", null: false
+    t.index ["product_id"], name: "index_coverages_on_product_id"
   end
 
   create_table "policy_value_tokens", charset: "utf8mb3", force: :cascade do |t|
@@ -67,6 +70,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_040632) do
     t.date "in_force"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "version"
+  end
+
+  create_table "pvlists", charset: "utf8mb3", force: :cascade do |t|
+    t.string "pvtoken"
+    t.string "provider"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "units"
   end
 
   create_table "value_configs", charset: "utf8mb3", force: :cascade do |t|
@@ -76,6 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_040632) do
     t.integer "min_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "product_id"
     t.index ["constraint_id"], name: "index_value_configs_on_constraint_id"
   end
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pvlists
   resources :policy_value_tokens
   resources :value_configs
   resources :constraints

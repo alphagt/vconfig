@@ -1,0 +1,2 @@
+class Pvlist < ApplicationRecord
+end
